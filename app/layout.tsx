@@ -1,11 +1,4 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google"
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  Show,
-  UserButton,
-} from "@clerk/nextjs"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -30,20 +23,7 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
     >
       <body>
-        <ClerkProvider>
-          <ThemeProvider>
-            <header className="flex items-center justify-end gap-3 p-4">
-              <Show when="signed-out">
-                <SignInButton />
-                <SignUpButton />
-              </Show>
-              <Show when="signed-in">
-                <UserButton />
-              </Show>
-            </header>
-            {children}
-          </ThemeProvider>
-        </ClerkProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )
